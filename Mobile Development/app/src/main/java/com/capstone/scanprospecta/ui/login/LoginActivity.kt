@@ -3,9 +3,8 @@ package com.capstone.scanprospecta.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.capstone.scanprospecta.R
 import com.capstone.scanprospecta.databinding.ActivityLoginBinding
-import com.capstone.scanprospecta.ui.MainActivity
+import com.capstone.scanprospecta.ui.home.MainActivity
 import com.capstone.scanprospecta.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
