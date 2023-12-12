@@ -12,4 +12,9 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="have_account">Dont have an account?</string>
+    <string name="get_started">Get Started</string>
+    <string name="onboarding_1">Welcome to\nScanProspecta!</string>
+    <string name="onboarding_2">Match Your CV with\nYour Dream Position</string>
+    <string name="onboarding_3">Attain Your Matching\nPercentage</string>
+    <string name="or">or</string>
 </resources>
