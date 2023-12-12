@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "879225611725",
+    "project_id": "scanprospecta-cc936",
+    "storage_bucket": "scanprospecta-cc936.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879225611725:android:8f26b07638879885961084",
+        "android_client_info": {
+          "package_name": "com.capstone.scanprospecta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879225611725-jlv8q3uvl1nol2bh7qktaf0r7be24e32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDne3xe_d5Q7t8Mg8nr6NWhx7RKSgysGXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879225611725-jlv8q3uvl1nol2bh7qktaf0r7be24e32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
