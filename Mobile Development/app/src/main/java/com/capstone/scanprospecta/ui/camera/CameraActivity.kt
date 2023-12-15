@@ -20,6 +20,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.capstone.scanprospecta.R
 import com.capstone.scanprospecta.databinding.ActivityCameraBinding
+import com.capstone.scanprospecta.ui.result.ResultActivity
 import com.capstone.scanprospecta.utils.createFile
 import java.io.File
 import java.io.InputStream
@@ -113,7 +114,7 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent(this@CameraActivity, PostActivity::class.java)
+                    val intent = Intent(this@CameraActivity, ResultActivity::class.java)
                     intent.putExtra(EXTRA_CAMERA_IMAGE, output.savedUri.toString())
                     setResult(CAMERA_RESULT, intent)
                     finish()
@@ -146,7 +147,10 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+
     companion object {
         private const val TAG = "CameraActivity"
+        const val EXTRA_CAMERA_IMAGE = "Camera Image"
+        const val CAMERA_RESULT = 200
     }
 }

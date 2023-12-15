@@ -1,4 +1,4 @@
-package com.capstone.scanprospecta.ui.home
+package com.capstone.scanprospecta.ui.main
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_job, R.id.navigation_profile
+                R.id.navigation_home, R.id.navigation_resume, R.id.navigation_consultation, R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

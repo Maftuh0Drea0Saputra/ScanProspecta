@@ -1,4 +1,4 @@
-package com.capstone.scanprospecta.ui.home.ui.profile
+package com.capstone.scanprospecta.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
