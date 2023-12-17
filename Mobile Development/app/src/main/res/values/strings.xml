@@ -34,4 +34,6 @@
     <string name="desc_result">This is the result of your CV\nmatching with several job positions</string>
     <string name="job_position">Job Position</string>
     <string name="resume_example">Resume Example</string>
+    <string name="logout">Logout</string>
+    <string name="description">Description</string>
 </resources>
