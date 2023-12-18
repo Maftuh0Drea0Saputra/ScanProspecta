@@ -58,4 +58,4 @@ gr.Interface(
     outputs=outputs,
     title="Resume Classifier with OCR",
     description="Upload a resume image or document to classify its content and display top 3 labels with probabilities."
-).launch()
+).launch(share=True)
