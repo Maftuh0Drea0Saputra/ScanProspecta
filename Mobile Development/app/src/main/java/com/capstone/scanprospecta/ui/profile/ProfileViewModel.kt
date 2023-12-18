@@ -1,4 +1,4 @@
-package com.capstone.scanprospecta.ui.home.ui.profile
+package com.capstone.scanprospecta.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
