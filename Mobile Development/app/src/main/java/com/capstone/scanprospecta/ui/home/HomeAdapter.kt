@@ -1,3 +1,4 @@
+
 package com.capstone.scanprospecta.ui.home
 
 import android.view.ViewGroup
@@ -8,6 +9,5 @@ class HomeAdapter () {
     class ListViewHolder {
 
     }
-
-
 }
+

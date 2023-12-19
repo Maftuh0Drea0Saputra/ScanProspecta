@@ -115,7 +115,7 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val intent = Intent(this@CameraActivity, ResultActivity::class.java)
-                    intent.putExtra(EXTRA_CAMERA_IMAGE, output.savedUri.toString())
+                    intent.putExtra(EXTRA_IMAGE_URI, output.savedUri.toString())
                     setResult(CAMERA_RESULT, intent)
                     finish()
                 }
@@ -141,16 +141,14 @@ class CameraActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val selectedImage: Uri = it.data?.data as Uri
-            if (selectedImage != null) {
                 currentImageUri = selectedImage
-            }
         }
     }
 
 
     companion object {
         private const val TAG = "CameraActivity"
-        const val EXTRA_CAMERA_IMAGE = "Camera Image"
+        const val EXTRA_IMAGE_URI = "extra_image_uri"
         const val CAMERA_RESULT = 200
     }
 }
