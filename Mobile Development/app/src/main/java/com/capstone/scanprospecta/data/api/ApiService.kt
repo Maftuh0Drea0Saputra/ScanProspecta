@@ -8,17 +8,11 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
-//    @FormUrlEncoded
     @POST("authentication/register")
     suspend fun register(
         @Body requestBody: Map<String, String>
-//        @Query("name") name: String,
-//        @Query("email") email: String,
-//        @Query("password") password: String,
-//        @Query("conf_password") conf_passwrod: String
     ): RegisterResponse
 
-//    @FormUrlEncoded
     @POST("login")
     suspend fun login(
         @Field("email") email: String,
