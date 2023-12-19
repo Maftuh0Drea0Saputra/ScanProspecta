@@ -13,9 +13,10 @@
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintVertical_bias="0.246"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp" />
+            android:layout_marginEnd="32dp"
+            motion:layout_constraintHorizontal_bias="0.0" />
         <Constraint
             android:id="@+id/menu1"
             android:layout_width="15dp"
@@ -54,6 +55,22 @@
                 motion:attributeName="crossfade"
                 motion:customFloatValue="0" />
         </Constraint>
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:id="@+id/loginButton"
+            motion:layout_constraintTop_toBottomOf="@+id/title1"
+            android:layout_marginTop="80dp"
+            motion:layout_editor_absoluteX="43dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:id="@+id/signupButton"
+            motion:layout_constraintTop_toBottomOf="@+id/title1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="80dp" />
     </ConstraintSet>
 
     <ConstraintSet
