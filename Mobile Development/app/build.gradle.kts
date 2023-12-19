@@ -52,21 +52,21 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
 
     val cameraxVersion = "1.3.0"
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
 
-    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
-    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.firebaseui:firebase-ui-database:8.0.0")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")

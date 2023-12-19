@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "879225611725",
+    "firebase_url": "https://scanprospecta-cc936-default-rtdb.firebaseio.com",
     "project_id": "scanprospecta-cc936",
     "storage_bucket": "scanprospecta-cc936.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "879225611725-lgi8k4n63n1g505src3g9lem264o6vid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.scanprospecta",
+            "certificate_hash": "ef50c707b5d115cf1b96026371c0192a60ca98d7"
+          }
+        },
         {
           "client_id": "879225611725-jlv8q3uvl1nol2bh7qktaf0r7be24e32.apps.googleusercontent.com",
           "client_type": 3
