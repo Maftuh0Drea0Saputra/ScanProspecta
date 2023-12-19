@@ -1,7 +1,7 @@
 package com.capstone.scanprospecta.di
 
 import android.content.Context
-import com.capstone.scanprospecta.data.UserRepository
+import com.capstone.scanprospecta.data.repository.UserRepository
 import com.capstone.scanprospecta.data.api.ApiConfig
 import com.capstone.scanprospecta.data.preference.UserPreference
 import com.capstone.scanprospecta.data.preference.dataStore
