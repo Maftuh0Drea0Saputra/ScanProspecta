@@ -13,9 +13,9 @@ interface ApiService {
         @Body requestBody: Map<String, String>
     ): RegisterResponse
 
-    @POST("login")
+    @POST("authentication/login")
     suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ):LoginResponse
+    ): LoginResponse
 }

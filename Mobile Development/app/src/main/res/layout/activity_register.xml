@@ -79,6 +79,7 @@
             android:ems="10"
             android:inputType="text"
             android:textColorHint="@color/gray_200"
+            android:textColor="@color/black"
             android:hint="@string/input_fullname"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +115,8 @@
             android:layout_height="55dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/gray_200" />
+            android:textColorHint="@color/gray_200"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -150,6 +152,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:textColorHint="@color/gray_200"
+            android:textColor="@color/black"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
