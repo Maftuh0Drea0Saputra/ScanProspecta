@@ -59,16 +59,20 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun usersignup(){
         binding.btnRegister.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
 
-            viewModel.register(name, email, password).observe(this) { it ->
+            val requestBody = mapOf(
+                "name" to name,
+                "email" to email,
+                "password" to password,
+                "conf_password" to password
+            )
+
+            viewModel.register(requestBody).observe(this) { it ->
                 if (it!= null) {
                     when(it) {
                         is ResultState.loading -> {
@@ -84,6 +88,8 @@ class RegisterActivity : AppCompatActivity() {
                             showToast(error)
                             showLoading(false)
                         }
+
+                        else -> {}
                     }
                 }
             }
