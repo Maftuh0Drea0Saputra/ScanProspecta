@@ -38,10 +38,10 @@ class UserRepository (
         }
     }
 
-    fun register(name: String, email: String, password: String) = liveData {
+    fun register(requestBody: Map<String, String>) = liveData {
         emit(ResultState.loading)
         try {
-            val successResponse = apiService.register(name, email, password)
+            val successResponse = apiService.register(requestBody)
             emit(ResultState.success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
