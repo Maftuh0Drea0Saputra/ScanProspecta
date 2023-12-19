@@ -3,7 +3,7 @@ package com.capstone.scanprospecta.ui
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.capstone.scanprospecta.data.UserRepository
+import com.capstone.scanprospecta.data.repository.UserRepository
 import com.capstone.scanprospecta.di.Injection
 import com.capstone.scanprospecta.ui.main.MainViewModel
 import com.capstone.scanprospecta.ui.register.RegisterViewModel

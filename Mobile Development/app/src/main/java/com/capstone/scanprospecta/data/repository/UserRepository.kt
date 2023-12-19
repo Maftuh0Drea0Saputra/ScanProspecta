@@ -1,6 +1,7 @@
-package com.capstone.scanprospecta.data
+package com.capstone.scanprospecta.data.repository
 
 import androidx.lifecycle.liveData
+import com.capstone.scanprospecta.data.ResultState
 import com.capstone.scanprospecta.data.api.ApiService
 import com.capstone.scanprospecta.data.preference.UserModel
 import com.capstone.scanprospecta.data.preference.UserPreference
@@ -33,7 +34,7 @@ class UserRepository (
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
-            emit(errorResponse.message?.let { ResultState.error(it)})
+            emit(errorResponse.message?.let { ResultState.error(it) })
         }
     }
 
@@ -45,12 +46,10 @@ class UserRepository (
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-            emit(errorResponse.message?.let { ResultState.error(it)})
+            emit(errorResponse.message?.let { ResultState.error(it) })
         }
 
     }
-
-
 
     companion object {
         @Volatile
