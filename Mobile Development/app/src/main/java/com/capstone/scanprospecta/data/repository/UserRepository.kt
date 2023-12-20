@@ -1,5 +1,6 @@
 package com.capstone.scanprospecta.data.repository
 
+import androidx.datastore.dataStore
 import androidx.lifecycle.liveData
 import com.capstone.scanprospecta.data.ResultState
 import com.capstone.scanprospecta.data.api.ApiService
@@ -15,12 +16,16 @@ class UserRepository (
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
-    suspend fun saveSession(user: UserModel) {
-        userPreference.saveSession(user)
+    suspend fun saveSession(token: String) {
+        userPreference.saveSession(token)
     }
 
-    fun getSession(): Flow<UserModel> {
+    fun getSession(): Flow<String> {
         return userPreference.getSession()
+    }
+
+    fun isFirstTime(): Flow<Boolean> {
+        return userPreference.isFirstTime()
     }
     suspend fun logout(){
         userPreference.logout()

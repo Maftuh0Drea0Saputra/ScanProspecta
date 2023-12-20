@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.capstone.scanprospecta.R
 import com.capstone.scanprospecta.databinding.ActivityMainBinding
 import com.capstone.scanprospecta.ui.ViewModelFactory
+import com.capstone.scanprospecta.ui.login.LoginActivity
 import com.capstone.scanprospecta.ui.onboarding.OnboardingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -46,5 +47,21 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkSessionValid()
+    }
+
+    private fun checkSessionValid() {
+        viewModel.getSession().observe(this) {
+            if (it == "null") {
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 }

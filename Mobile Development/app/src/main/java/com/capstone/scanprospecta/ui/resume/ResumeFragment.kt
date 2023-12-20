@@ -17,7 +17,7 @@ class ResumeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val jobViewModel =
+        val resumeViewModel =
             ViewModelProvider(this).get(ResumeViewModel::class.java)
 
         binding = FragmentResumeBinding.inflate(inflater, container, false)

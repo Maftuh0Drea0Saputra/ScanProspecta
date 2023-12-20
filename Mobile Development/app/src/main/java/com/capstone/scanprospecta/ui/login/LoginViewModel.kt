@@ -12,6 +12,16 @@ class LoginViewModel (private val repository: UserRepository): ViewModel() {
             repository.saveSession(user)
         }
     }
+    
+    fun saveSession(token: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.saveSession(token)
+        }
+    }
+    
+    fun checkIfFirstTime(): LiveData<Boolean> {
+        return userRepository.isFirstTime().asLiveData()
+    }
     fun login(requestBody: Map<String, String>) = repository.login(requestBody)
 
 }

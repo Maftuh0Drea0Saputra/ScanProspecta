@@ -7,6 +7,7 @@ import com.capstone.scanprospecta.data.repository.UserRepository
 import com.capstone.scanprospecta.di.Injection
 import com.capstone.scanprospecta.ui.login.LoginViewModel
 import com.capstone.scanprospecta.ui.main.MainViewModel
+import com.capstone.scanprospecta.ui.onboarding.OnboardingViewModel
 import com.capstone.scanprospecta.ui.profile.ProfileViewModel
 import com.capstone.scanprospecta.ui.register.RegisterViewModel
 
@@ -23,6 +24,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
