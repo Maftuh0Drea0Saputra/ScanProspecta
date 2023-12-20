@@ -36,4 +36,8 @@
     <string name="resume_example">Resume Example</string>
     <string name="logout">Logout</string>
     <string name="description">Description</string>
+
+    <string name="send_success">Sent successfully</string>
+    <string name="send_error">Failed to send</string>
+    <string name="confirmation_password">Confirmation Password</string>
 </resources>

@@ -1,0 +1,67 @@
+package com.capstone.scanprospecta.data.preference
+
+import android.content.Context
+import androidx.browser.trusted.Token
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
+
+class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
+
+    private val token = stringPreferencesKey("token")
+    private val firstTime = booleanPreferencesKey("first_name")
+    suspend fun saveSession(token: String) {
+        dataStore.edit {
+            it[this.token] = token
+        }
+    }
+
+    fun getSession(): Flow<String> {
+        return dataStore.data.map {
+            it[token] ?: "null"
+        }
+    }
+
+    fun isFirstTime(): Flow<Boolean> {
+        return dataStore.data.map {
+            it[firstTime] ?: true
+        }
+    }
+
+    suspend fun setFirstTime(firstTime: Boolean) {
+        dataStore.edit {
+            it[this.firstTime] = firstTime
+        }
+    }
+
+    suspend fun logout() {
+        dataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
+
+    companion object {
+        @Volatile
+        private var INSTANCE: UserPreference? = null
+
+        private val NAME_KEY = stringPreferencesKey("name")
+        private val EMAIL_KEY = stringPreferencesKey("email")
+        private val TOKEN_KEY = stringPreferencesKey("token")
+        private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
+
+        fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
+            return INSTANCE ?: synchronized(this) {
+                val instance = UserPreference(dataStore)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}
