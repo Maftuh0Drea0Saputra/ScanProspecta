@@ -4,6 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.capstone.scanprospecta.data.repository.UserRepository
 
 class RegisterViewModel (private val repository: UserRepository): ViewModel() {
-    fun register(name: String,email: String, password: String) = repository.register(name,email,password)
+    fun register(requestBody: Map<String, String>) = repository.register(requestBody)
 
 }
