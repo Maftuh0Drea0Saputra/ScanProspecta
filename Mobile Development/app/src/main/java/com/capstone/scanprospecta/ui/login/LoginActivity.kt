@@ -16,7 +16,9 @@ import com.capstone.scanprospecta.data.ResultState
 import com.capstone.scanprospecta.data.preference.UserModel
 import com.capstone.scanprospecta.databinding.ActivityLoginBinding
 import com.capstone.scanprospecta.ui.ViewModelFactory
+import com.capstone.scanprospecta.ui.home.HomeFragment
 import com.capstone.scanprospecta.ui.main.MainActivity
+import com.capstone.scanprospecta.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -49,6 +51,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction(message: String) {
+        binding.btnRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java)) }
+
         AlertDialog.Builder(this@LoginActivity).apply {
             setTitle("Yeah!")
             setMessage(message)
@@ -72,10 +77,7 @@ class LoginActivity : AppCompatActivity() {
             "email" to email,
             "password" to password,
         )
-
         binding.btnLogin.setOnClickListener{
-
-
             viewModel.login(requestBody).observe(this){
                 if (it!=null){
                     when(it){
@@ -86,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                             val message = it.data.message
                             setupAction(message)
 
-                            val token = it.data?.refreshToken
+                            val token = it.data?.Token
 
                             if (token != null) {
                                 viewModel.saveSession(UserModel( email, token))
