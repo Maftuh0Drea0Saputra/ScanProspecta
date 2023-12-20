@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.scanprospecta.data.repository.UserRepository
 import com.capstone.scanprospecta.di.Injection
+import com.capstone.scanprospecta.ui.login.LoginViewModel
 import com.capstone.scanprospecta.ui.main.MainViewModel
 import com.capstone.scanprospecta.ui.profile.ProfileViewModel
 import com.capstone.scanprospecta.ui.register.RegisterViewModel
@@ -16,6 +17,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
