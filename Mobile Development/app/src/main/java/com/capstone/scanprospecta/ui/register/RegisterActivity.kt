@@ -49,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         AlertDialog.Builder(this@RegisterActivity).apply {
             setTitle("Yeah!")
             setMessage(message)
-            setPositiveButton("Lanjut") { _, _ ->
+            setPositiveButton("Next") { _, _ ->
                 val intent = Intent(context, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
@@ -64,16 +64,17 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
+            val confpassword = binding.editTextConfPassword.text.toString()
 
             val requestBody = mapOf(
                 "name" to name,
                 "email" to email,
                 "password" to password,
-                "conf_password" to password
+                "conf_password" to confpassword
             )
 
             viewModel.register(requestBody).observe(this) { it ->
-                if (it!= null) {
+                if (!name.isNullOrEmpty() && !email.isNullOrEmpty() && !password.isNullOrEmpty() && !confpassword.isNullOrEmpty()) {
                     when(it) {
                         is ResultState.loading -> {
                             showLoading(true)
@@ -91,6 +92,11 @@ class RegisterActivity : AppCompatActivity() {
 
                         else -> {}
                     }
+                } else {
+                    if (name.isNullOrEmpty()) binding.editTextName.error = "Name cannot be empty!"
+                    if (email.isNullOrEmpty()) binding.editTextEmail.error = "Email cannot be empty!"
+                    if (password.isNullOrEmpty()) binding.editTextPassword.error = "Password cannot be empty!"
+                    if (confpassword.isNullOrEmpty()) binding.editTextConfPassword.error = "Password cannot be empty!"
                 }
             }
         }

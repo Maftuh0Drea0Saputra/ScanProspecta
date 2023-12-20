@@ -27,7 +27,6 @@ class PasswordEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Create new password"
         background = if (isError) editTextErrorBackground else editTextBackground
         addTextChangedListener(onTextChanged = { text, _, _, _ ->
             if (!TextUtils.isEmpty(text) && text.toString().length < 8) {

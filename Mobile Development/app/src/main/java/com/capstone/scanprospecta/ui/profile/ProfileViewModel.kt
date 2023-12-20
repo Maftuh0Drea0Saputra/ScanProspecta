@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
-    fun getSession(): LiveData<UserModel> {
+    fun getSession(): LiveData<String> {
         return repository.getSession().asLiveData()
     }
 

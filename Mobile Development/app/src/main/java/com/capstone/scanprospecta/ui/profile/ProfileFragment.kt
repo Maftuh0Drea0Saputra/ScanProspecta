@@ -30,8 +30,8 @@ class ProfileFragment : Fragment() {
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
             binding.apply {
-                tvName.text = user.name
-                tvEmail.text = user.email
+          //      tvName.text = user.name
+          //      tvEmail.text = user.email
             }
         }
         binding.btnLogout.setOnClickListener {
