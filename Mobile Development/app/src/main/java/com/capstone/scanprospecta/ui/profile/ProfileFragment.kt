@@ -32,6 +32,7 @@ class ProfileFragment : Fragment() {
             binding.apply {
           //      tvName.text = user.name
           //      tvEmail.text = user.email
+                tvEmail.text = user.email
             }
         }
         binding.btnLogout.setOnClickListener {

@@ -31,10 +31,10 @@ class UserRepository (
         userPreference.logout()
     }
 
-    fun login(email: String, password: String) = liveData {
+    fun login(requestBody: Map<String, String>) = liveData {
         emit(ResultState.loading)
         try {
-            val successResponse = apiService.login(email, password)
+            val successResponse = apiService.login(requestBody)
             emit(ResultState.success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
