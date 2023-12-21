@@ -28,7 +28,6 @@ class OnboardingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            viewModel.setFirstTime(false)
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
