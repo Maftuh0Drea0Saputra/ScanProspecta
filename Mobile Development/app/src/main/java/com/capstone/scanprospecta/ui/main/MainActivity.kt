@@ -1,7 +1,10 @@
 package com.capstone.scanprospecta.ui.main
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -29,15 +32,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        viewModel.getSession().observe(this) { user ->
-//            if (!user.isLogin) {
-//                startActivity(Intent(this, OnboardingActivity::class.java))
-//                finish()
-//            }
-//        }
-
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, OnboardingActivity::class.java))
+                finish()
+            }
+        }
         setSupportActionBar(findViewById(R.id.toolbar))
-
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -49,19 +50,4 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onResume() {
-        super.onResume()
-        checkSessionValid()
-    }
-
-    private fun checkSessionValid() {
-        viewModel.getSession().observe(this) {
-            if (it == "null") {
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
 }
