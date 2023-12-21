@@ -14,7 +14,7 @@ data class LoginResponse(
 	val message: String,
 
 	@field:SerializedName("accessToken")
-	val Token: String,
+	val accessToken: String,
 
 	@field:SerializedName("client_id")
 	val clientId: Int,
