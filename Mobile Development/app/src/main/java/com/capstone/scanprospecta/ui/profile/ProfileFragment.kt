@@ -28,13 +28,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            binding.apply {
-          //      tvName.text = user.name
-          //      tvEmail.text = user.email
-                tvEmail.text = user.email
-            }
-        }
+//        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+//            binding.apply {
+//          //      tvName.text = user.name
+//          //      tvEmail.text = user.email
+////                tvEmail.text = user.email
+//            }
+//        }
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
         }
