@@ -1,7 +1,6 @@
 package com.capstone.scanprospecta.data.preference
 
 import android.content.Context
-import androidx.browser.trusted.Token
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -16,23 +15,6 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
 
-    private val token = stringPreferencesKey("token")
-    private val firstTime = booleanPreferencesKey("first_name")
-    suspend fun saveSession(token: String) {
-        dataStore.edit {
-            it[this.token] = token
-        }
-    }
-
-    fun getSession(): Flow<String> {
-        return dataStore.data.map {
-            it[token] ?: "null"
-        }
-    }
-
-    fun isFirstTime(): Flow<Boolean> {
-        return dataStore.data.map {
-            it[firstTime] ?: true
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[EMAIL_KEY] = user.email
@@ -48,12 +30,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[TOKEN_KEY] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false
             )
-        }
-    }
-
-    suspend fun setFirstTime(firstTime: Boolean) {
-        dataStore.edit {
-            it[this.firstTime] = firstTime
         }
     }
 
