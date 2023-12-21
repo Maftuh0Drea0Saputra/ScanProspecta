@@ -9,12 +9,6 @@ import kotlinx.coroutines.launch
 
 class OnboardingViewModel(private val userPreference: UserPreference): ViewModel() {
 
-    fun setFirstTime(firstTime: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            userPreference.setFirstTime(firstTime)
-        }
-    }
-
     class OnboardingViewModelFactory private constructor(private val userPreference: UserPreference) :
             ViewModelProvider.NewInstanceFactory() {
         @Suppress("UNCHECKED_CAST")
