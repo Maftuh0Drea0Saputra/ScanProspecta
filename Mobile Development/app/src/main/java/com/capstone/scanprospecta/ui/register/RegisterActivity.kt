@@ -28,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
-        usersignup()
+        userregister()
     }
 
     private fun setupView() {
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun usersignup(){
+    private fun userregister(){
         binding.btnRegister.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
