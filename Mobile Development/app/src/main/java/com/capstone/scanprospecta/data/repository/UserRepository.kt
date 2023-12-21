@@ -1,6 +1,5 @@
 package com.capstone.scanprospecta.data.repository
 
-import androidx.datastore.dataStore
 import androidx.lifecycle.liveData
 import com.capstone.scanprospecta.data.ResultState
 import com.capstone.scanprospecta.data.api.ApiService
@@ -16,22 +15,18 @@ class UserRepository (
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
-    suspend fun saveSession(token: String) {
-        userPreference.saveSession(token)
+    suspend fun saveSession(user: UserModel) {
+        userPreference.saveSession(user)
     }
-
-    fun getSession(): Flow<String> {
+    fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
     }
 
-    fun isFirstTime(): Flow<Boolean> {
-        return userPreference.isFirstTime()
-    }
-    suspend fun logout(){
+    suspend fun logout() {
         userPreference.logout()
     }
 
-    fun login(requestBody: Map<String, String>) = liveData {
+    fun login(requestBody:Map<String, String>) = liveData {
         emit(ResultState.loading)
         try {
             val successResponse = apiService.login(requestBody)
@@ -39,8 +34,9 @@ class UserRepository (
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
-            emit(errorResponse.message.let { ResultState.error(it) })
+            emit(errorResponse.message?.let { ResultState.error(it)})
         }
+
     }
 
     fun register(requestBody: Map<String, String>) = liveData {
