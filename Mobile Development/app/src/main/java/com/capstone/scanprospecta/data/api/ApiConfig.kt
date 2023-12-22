@@ -7,14 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object {
-        fun getApiService(): ApiService {
+        fun getApiService(baseUrl: String): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://scanprospecta-api-vd4ncija7a-et.a.run.app")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
@@ -23,5 +23,5 @@ class ApiConfig {
     }
 }
 
-//val apiServiceEndpoint1 = ApiConfig.getApiService("https://scanprospecta.et.r.appspot.com/")
-//val apiServiceEndpoint2 = ApiConfig.getApiService("https://m296bsy1181-scanprospecta.hf.space/")
+val apiServiceEndpoint1 = ApiConfig.getApiService("https://scanprospecta-api-vd4ncija7a-et.a.run.app/")
+val apiServiceEndpoint2 = ApiConfig.getApiService("http://34.171.65.133:7865/")
