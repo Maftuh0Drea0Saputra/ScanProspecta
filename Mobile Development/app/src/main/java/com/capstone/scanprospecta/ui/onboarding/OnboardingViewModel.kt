@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class OnboardingViewModel(private val userPreference: UserPreference): ViewModel() {
 
     class OnboardingViewModelFactory private constructor(private val userPreference: UserPreference) :
-            ViewModelProvider.NewInstanceFactory() {
+        ViewModelProvider.NewInstanceFactory() {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(OnboardingViewModel::class.java)) {
