@@ -8,6 +8,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.OrientationEventListener
+import android.view.Surface
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -22,6 +24,7 @@ import com.capstone.scanprospecta.R
 import com.capstone.scanprospecta.databinding.ActivityCameraBinding
 import com.capstone.scanprospecta.ui.result.ResultActivity
 import com.capstone.scanprospecta.utils.createFile
+import com.capstone.scanprospecta.utils.uriToFile
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -30,24 +33,24 @@ import java.util.concurrent.Executors
 
 class CameraActivity : AppCompatActivity() {
 
-    private val binding: ActivityCameraBinding by lazy {
-        ActivityCameraBinding.inflate(layoutInflater)
-    }
-
-    private lateinit var cameraExecutor: ExecutorService
-
+    private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-    private var photoTaken = false
-
     private var currentImageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
-        setupButton()
+        binding.btnCapture.setOnClickListener {
+            takePhoto()
+        }
+
+        binding.btnGallery.setOnClickListener {
+            startGallery()
+        }
     }
 
     override fun onResume() {
@@ -90,22 +93,9 @@ class CameraActivity : AppCompatActivity() {
             }
         }, ContextCompat.getMainExecutor(this))
     }
-    private fun setupButton() {
-        binding.btnCapture.setOnClickListener {
-            if (photoTaken) {
-                Toast.makeText(this, "Wait until processing is done", Toast.LENGTH_SHORT).show()
-            } else {
-                photoTaken = true
-                takePhoto()
-            }
-        }
-        binding.btnGallery.setOnClickListener {
-            startGallery()
-        }
-    }
 
     private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
+        val imageCapture = imageCapture?: return
         val photoFile = createFile(application)
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -115,8 +105,12 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val intent = Intent(this@CameraActivity, ResultActivity::class.java)
-                    intent.putExtra(EXTRA_IMAGE_URI, output.savedUri.toString())
-                    setResult(CAMERA_RESULT, intent)
+                    intent.putExtra(ResultActivity.PHOTO_RESULT_EXTRA, photoFile)
+                    intent.putExtra(
+                        ResultActivity.IS_CAMERA_BACK_EXTRA,
+                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+                    )
+                    startActivity(intent)
                     finish()
                 }
 
@@ -126,6 +120,25 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private val orientationEventListener by lazy {
+        object : OrientationEventListener(this) {
+            override fun onOrientationChanged(orientation: Int) {
+                if (orientation == ORIENTATION_UNKNOWN) {
+                    return
+                }
+
+                val rotation = when (orientation) {
+                    in 45 until 135 -> Surface.ROTATION_270
+                    in 135 until 225 -> Surface.ROTATION_180
+                    in 225 until 315 -> Surface.ROTATION_90
+                    else -> Surface.ROTATION_0
+                }
+
+                imageCapture?.targetRotation = rotation
+            }
+        }
     }
 
     private fun startGallery() {
@@ -141,10 +154,23 @@ class CameraActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val selectedImage: Uri = it.data?.data as Uri
-                currentImageUri = selectedImage
+            val myFile = uriToFile(selectedImage, this@CameraActivity)
+            val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+            intent.putExtra(ResultActivity.PHOTO_RESULT_EXTRA, myFile)
+            startActivity(intent)
+            finish()
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        orientationEventListener.enable()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        orientationEventListener.disable()
+    }
 
     companion object {
         private const val TAG = "CameraActivity"
