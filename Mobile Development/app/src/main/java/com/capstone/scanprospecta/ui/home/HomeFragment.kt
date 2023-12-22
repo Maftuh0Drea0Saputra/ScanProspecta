@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.capstone.scanprospecta.data.response.RegisterResponse
 import com.capstone.scanprospecta.databinding.FragmentHomeBinding
 import com.capstone.scanprospecta.ui.camera.CameraActivity
 
