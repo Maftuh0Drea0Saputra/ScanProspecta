@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.result.ResultActivity">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:id="@+id/ivResult"
         android:layout_width="180dp"
@@ -39,71 +49,14 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvPercentage1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvDescResult"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/percentage"
-            android:textColor="@color/navy"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvJob1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPercentage1"
-            android:layout_marginStart="30dp"
-            android:text="@string/job_position"
-            android:textColor="@color/navy"
-            android:textSize="35sp" />
-
-        <TextView
-            android:id="@+id/tvPercentage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvJob1"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/percentage"
-            android:textColor="@color/navy"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvJob2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPercentage2"
-            android:layout_marginStart="30dp"
-            android:text="@string/job_position"
-            android:textColor="@color/navy"
-            android:textSize="35sp" />
-
-        <TextView
-            android:id="@+id/tvPercentage3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvJob2"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/percentage"
-            android:textColor="@color/navy"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvJob3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPercentage3"
-            android:layout_marginStart="30dp"
-            android:text="@string/job_position"
-            android:textColor="@color/navy"
-            android:textSize="35sp" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            tools:listitem="@layout/item_result"/>
     </RelativeLayout>
 
     <ProgressBar
