@@ -78,14 +78,6 @@ class ConsultationFragment : Fragment() {
         adapter = ConsultationAdapter(options, firebaseUser?.displayName)
         binding.messageRecyclerView.adapter = adapter
 
-        binding.messageEditText.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                hideBottomNavigation()
-            } else {
-                showBottomNavigation()
-            }
-        }
-
         return binding.root
     }
 
@@ -96,17 +88,6 @@ class ConsultationFragment : Fragment() {
     override fun onPause() {
         adapter.stopListening()
         super.onPause()
-    }
-
-    private fun hideBottomNavigation() {
-        val navController = findNavController()
-        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        navView?.visibility = View.GONE
-    }
-
-    private fun showBottomNavigation() {
-        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        navView?.visibility = View.VISIBLE
     }
 
     companion object {
