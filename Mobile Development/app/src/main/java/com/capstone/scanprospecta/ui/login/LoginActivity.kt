@@ -84,10 +84,10 @@ class LoginActivity : AppCompatActivity() {
                         is ResultState.success -> {
                             val message = it.data.message
                             setupAction(message)
-
                             val token = it.data.accessToken
+                            val name = it.data.name
 
-                            viewModel.saveSession(UserModel(email, token))
+                            viewModel.saveSession(UserModel(name, email, token))
 
                             showLoading(false)
                         }
