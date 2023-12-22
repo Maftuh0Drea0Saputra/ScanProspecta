@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.scanprospecta.data.repository.JobRecomRepository
+import com.capstone.scanprospecta.data.response.DetailItem
 import com.capstone.scanprospecta.di.Injection
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -16,7 +17,7 @@ class ResultViewModel(private val repository: JobRecomRepository): ViewModel() {
     val jobRecomResult get() = _jobRecomResult
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun postJobRecom(imageFile: File, data: List<String>) {
+    fun postJobRecom(imageFile: File, data: List<DetailItem?>?) {
         GlobalScope.launch {
             repository.postJobRecom(imageFile, data)
         }
