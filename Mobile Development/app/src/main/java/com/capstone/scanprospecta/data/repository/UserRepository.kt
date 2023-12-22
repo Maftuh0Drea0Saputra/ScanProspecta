@@ -34,7 +34,7 @@ class UserRepository (
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
-            emit(errorResponse.message?.let { ResultState.error(it)})
+            emit(errorResponse.message.let { ResultState.error(it)})
         }
 
     }
